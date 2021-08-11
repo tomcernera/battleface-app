@@ -1,0 +1,25 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username: </label>
+        <input id="username" type="text" formControlName="username">
+        <div *ngIf="userForm.controls.username.touched && userForm.controls.username.errors?.required" class="warning"> 
+            Username is required.
+        </div>
+        <div *ngIf="userForm.controls.username.touched && userForm.controls.username.errors?.minlength" class="warning">
+            Username must be at least 6 characters.
+        </div>
+    </div>
+  <div>
+    <label for="password">Password: </label>
+    <input id="password" type="password" formControlName="password">
+    <div *ngIf="userForm.controls.password.touched && userForm.controls.password.errors?.required" class="warning">
+        Password is required.
+    </div>
+    <div *ngIf="userForm.controls.password.touched && userForm.controls.password.errors?.minlength" class="warning">
+        Password must be at least 6 characters.
+    </div>
+  </div>
+    <div>
+        <button type="submit" [disabled]= !userForm.valid>Submit</button>
+    </div>
+  </form>

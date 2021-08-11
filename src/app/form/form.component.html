@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="Age">Age(s): </label>
+        <input id="age" type="text" formControlName="age">
+        <div *ngIf="form.controls.age.touched && form.controls.age.errors?.required" class="warning">
+            Age(s) are required and should be comma separated.
+        </div>
+    </div>
+
+    <div>
+        <label for="currency_id">Currency: </label>
+        <input id="currency_id" type="text" formControlName="currency_id">
+        <div *ngIf="form.controls.currency_id.touched && form.controls.currency_id.errors?.required" class="warning">
+            Currency is required.
+        </div>
+    </div>
+
+    <div>
+        <label for="start_date">Start Date: </label>
+        <input id="start_date" type="date" formControlName="start_date">
+        <div *ngIf="form.controls.start_date.touched && form.controls.start_date.errors?.required" class="warning">
+            Start date is required.
+        </div>
+    </div>
+
+    <div>
+        <label for="end_date">End Date: </label>
+        <input id="end_date" type="date" data-date-format="YYYY-MM-DD" formControlName="end_date">
+        <div *ngIf="form.controls.end_date.touched && form.controls.end_date.errors?.required" class="warning">
+            End Date is required.
+        </div>
+    </div>
+ 
+    <div>
+        <button type="submit" [disabled]= !form.valid>Submit</button>
+    </div>
+  </form>
+
+  <div>
+      <p>Total: ${{(quote | async)?.total}}</p>
+      <p>Currency: {{(quote | async)?.currency_id}}</p>
+      <p>Quote Id: {{(quote | async)?.quotation_id}}</p>
+      <p>Error: {{(quote | async)?.error}}</p>
+  </div>
